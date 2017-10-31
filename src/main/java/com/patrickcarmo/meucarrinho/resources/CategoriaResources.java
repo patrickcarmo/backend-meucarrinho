@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.patrickcarmo.meucarrinho.domain.Categoria;
+import com.patrickcarmo.meucarrinho.repositories.CategoriaRepository;
 import com.patrickcarmo.meucarrinho.services.CategoriaService;
 
 @RestController
@@ -21,16 +22,9 @@ public class CategoriaResources {
 	private CategoriaService service;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> listar() {
-		
-		Categoria cat1 = new Categoria(1, "Informática");
-		Categoria cat2 = new Categoria(2, "Escritório");
-		
-		List<Categoria> lista = new ArrayList<>();
-		lista.add(cat1);
-		lista.add(cat2);
-		
-		return lista;
+	public ResponseEntity<?> listar() {
+		List<Categoria> obj = service.buscarTodos();
+		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
