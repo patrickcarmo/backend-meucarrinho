@@ -1,6 +1,5 @@
 package com.patrickcarmo.meucarrinho.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.patrickcarmo.meucarrinho.domain.Categoria;
-import com.patrickcarmo.meucarrinho.repositories.CategoriaRepository;
 import com.patrickcarmo.meucarrinho.services.CategoriaService;
 
 @RestController
