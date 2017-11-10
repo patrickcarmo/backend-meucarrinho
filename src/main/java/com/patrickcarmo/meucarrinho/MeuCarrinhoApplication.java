@@ -13,6 +13,7 @@ import com.patrickcarmo.meucarrinho.domain.Cidade;
 import com.patrickcarmo.meucarrinho.domain.Cliente;
 import com.patrickcarmo.meucarrinho.domain.Endereco;
 import com.patrickcarmo.meucarrinho.domain.Estado;
+import com.patrickcarmo.meucarrinho.domain.ItemPedido;
 import com.patrickcarmo.meucarrinho.domain.Pagamento;
 import com.patrickcarmo.meucarrinho.domain.PagamentoComBoleto;
 import com.patrickcarmo.meucarrinho.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.patrickcarmo.meucarrinho.repositories.CidadeRepository;
 import com.patrickcarmo.meucarrinho.repositories.ClienteRepository;
 import com.patrickcarmo.meucarrinho.repositories.EnderecoRepository;
 import com.patrickcarmo.meucarrinho.repositories.EstadoRepository;
+import com.patrickcarmo.meucarrinho.repositories.ItemPedidoRepository;
 import com.patrickcarmo.meucarrinho.repositories.PagamentoRepository;
 import com.patrickcarmo.meucarrinho.repositories.PedidoRepository;
 import com.patrickcarmo.meucarrinho.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class MeuCarrinhoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MeuCarrinhoApplication.class, args);
@@ -109,6 +114,17 @@ public class MeuCarrinhoApplication implements CommandLineRunner{
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
 		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
 		produtoRepository.save(Arrays.asList(p1, p2, p3, p4));
 		estadoRepository.save(Arrays.asList(est1, est2));
@@ -117,6 +133,7 @@ public class MeuCarrinhoApplication implements CommandLineRunner{
 		enderecoRepository.save(Arrays.asList(e1,e2));
 		pedidoRepository.save(Arrays.asList(ped1,ped2));
 		pagamentoRepository.save(Arrays.asList(pagto1,pagto2));
+		itemPedidoRepository.save(Arrays.asList(ip1, ip2, ip3));
 		
 		
 	}
