@@ -20,14 +20,14 @@ public class ClienteResources {
 	private ClienteService service;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<?> listar() {
-		List<Cliente> obj = service.buscarTodos();
+	public ResponseEntity<?> findAll() {
+		List<Cliente> obj = service.findAll();
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id){
-		Cliente obj = service.buscar(id);
+		Cliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	

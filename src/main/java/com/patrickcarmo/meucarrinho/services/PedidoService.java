@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.patrickcarmo.meucarrinho.domain.Pedido;
 import com.patrickcarmo.meucarrinho.repositories.PedidoRepository;
-import com.patrickcarmo.meucarrinho.services.exceptions.ObjectNotFoundException;
+import com.patrickcarmo.meucarrinho.services.exceptions.DataIntegrityException;
 
 @Service
 public class PedidoService {
@@ -15,16 +15,16 @@ public class PedidoService {
 	@Autowired
 	private PedidoRepository repo;
 	
-	public Pedido buscar(Integer id) {
+	public Pedido find(Integer id) {
 		Pedido obj = repo.findOne(id);
 		if (obj == null) {
-			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
+			throw new DataIntegrityException("Objeto não encontrado! Id: " + id
 					+ ", Tipo: " + Pedido.class.getName());
 		}
 		return obj;
 	}
 	
-	public List<Pedido> buscarTodos() {
+	public List<Pedido> findAll() {
 		List<Pedido> obj = repo.findAll();
 		return obj;
 	}
