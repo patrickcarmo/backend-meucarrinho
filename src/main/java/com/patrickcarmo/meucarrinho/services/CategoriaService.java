@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.patrickcarmo.meucarrinho.domain.Categoria;
 import com.patrickcarmo.meucarrinho.repositories.CategoriaRepository;
 import com.patrickcarmo.meucarrinho.services.exceptions.DataIntegrityException;
+import com.patrickcarmo.meucarrinho.services.exceptions.ObjectNotFoundException;
 
 
 @Service
@@ -20,15 +21,14 @@ public class CategoriaService {
 	public Categoria find(Integer id) {
 		Categoria obj = repo.findOne(id);
 		if(obj == null) {
-			throw new DataIntegrityViolationException("Objeto não encontrado! Id: " + id
+			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
 					+ ", Tipo: " + Categoria.class.getName());
 		}
 		return obj;
 	}
 	
 	public List<Categoria> findAll() {
-		List<Categoria> obj = repo.findAll();
-		return obj;
+		return repo.findAll();		
 	}
 	
 	public Categoria insert(Categoria obj) {
