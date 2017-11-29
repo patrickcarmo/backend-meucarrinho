@@ -71,6 +71,13 @@ public class MeuCarrinhoApplication implements CommandLineRunner{
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
 		Categoria cat3 = new Categoria(null, "Games");
+		Categoria cat4 = new Categoria(null, "Materiais");
+		Categoria cat5 = new Categoria(null, "Periférico");
+		Categoria cat6 = new Categoria(null, "Consumiveis");
+		Categoria cat7 = new Categoria(null, "Perfumaria");
+		Categoria cat8 = new Categoria(null, "Doméstico");
+		Categoria cat9 = new Categoria(null, "Acabamento");
+		Categoria cat10 = new Categoria(null, "Mostruario");
 		
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -125,7 +132,7 @@ public class MeuCarrinhoApplication implements CommandLineRunner{
 		p2.getItens().addAll(Arrays.asList(ip3));
 		p3.getItens().addAll(Arrays.asList(ip2));
 		
-		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3));
+		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10));
 		produtoRepository.save(Arrays.asList(p1, p2, p3, p4));
 		estadoRepository.save(Arrays.asList(est1, est2));
 		cidadeRepository.save(Arrays.asList(c1, c2, c3));	
