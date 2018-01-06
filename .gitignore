@@ -23,6 +23,7 @@ dist/
 nbdist/
 .nb-gradle/
 
-### MySQL ###
-src/main/resources/application.properties
+### Properties ###
+src/main/resources/application-dev.properties
+src/main/resources/application-prod.properties
 
