@@ -13,12 +13,15 @@ import org.springframework.stereotype.Service;
 import com.patrickcarmo.meucarrinho.domain.Cidade;
 import com.patrickcarmo.meucarrinho.domain.Cliente;
 import com.patrickcarmo.meucarrinho.domain.Endereco;
+import com.patrickcarmo.meucarrinho.domain.enums.Perfil;
 import com.patrickcarmo.meucarrinho.domain.enums.TipoCliente;
 import com.patrickcarmo.meucarrinho.dto.ClienteDTO;
 import com.patrickcarmo.meucarrinho.dto.ClienteNewDTO;
 import com.patrickcarmo.meucarrinho.repositories.CidadeRepository;
 import com.patrickcarmo.meucarrinho.repositories.ClienteRepository;
 import com.patrickcarmo.meucarrinho.repositories.EnderecoRepository;
+import com.patrickcarmo.meucarrinho.security.UserSS;
+import com.patrickcarmo.meucarrinho.services.exceptions.AuthorizationException;
 import com.patrickcarmo.meucarrinho.services.exceptions.DataIntegrityException;
 
 @Service
@@ -37,6 +40,12 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado!");
+		}
+		
 		Cliente obj = repo.findOne(id);
 		if(obj == null) {
 			throw new DataIntegrityException("Cliente não encontrado! Id: " + id
