@@ -13,12 +13,12 @@ import com.patrickcarmo.meucarrinho.services.EmailService;
 import com.patrickcarmo.meucarrinho.services.SmtpEmailService;
 
 @Configuration
-@Profile("dev")
-public class DevConfig {
+@Profile("prod")
+public class ProdConfig {
 	
 	@Autowired
 	private DBService dbService;
-
+	
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
 	

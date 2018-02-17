@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -34,6 +33,8 @@ public class Cliente implements Serializable {
 	
 	@Column(unique=true)
 	private String email;
+	
+	@Column(unique=true)
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
